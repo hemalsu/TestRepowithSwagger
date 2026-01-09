@@ -1,0 +1,96 @@
+####################################
+# OS / Editor
+####################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+####################################
+# .NET / Visual Studio
+####################################
+bin/
+obj/
+out/
+TestResults/
+.vs/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+####################################
+# .NET Publish / Build
+####################################
+**/publish/
+**/wwwroot/lib/
+
+####################################
+# Logs
+####################################
+*.log
+logs/
+
+####################################
+# Angular / Node
+####################################
+node_modules/
+dist/
+coverage/
+.angular/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+####################################
+# Environment / Secrets
+####################################
+.env
+.env.*
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+
+####################################
+# Docker
+####################################
+docker-compose.override.yml
+*.env.docker
+
+####################################
+# Temporary / Cache
+####################################
+*.tmp
+*.temp
+.cache/
+
+####################################
+# Build Outputs
+####################################
+*.dll
+*.exe
+*.pdb
+
+####################################
+# Azure / AWS Local
+####################################
+.azure/
+.aws/
+
+####################################
+# Misc
+####################################
+*.bak
+*.old
