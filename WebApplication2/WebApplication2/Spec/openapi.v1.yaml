@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Widget API
+  description: Simple API for managing widgets
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /widgets:
+    post:
+      summary: Create a widget
+      operationId: createWidget
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWidgetRequest'
+      responses:
+        '201':
+          description: Widget created
+          headers:
+            Location:
+              description: URL of the created widget
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        '400':
+          description: Invalid request
+
+    get:
+      summary: List widgets
+      operationId: listWidgets
+      responses:
+        '200':
+          description: List of widgets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Widget'
+
+  /widgets/{id}:
+    get:
+      summary: Get widget by ID
+      operationId: getWidgetById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Widget found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        '404':
+          description: Widget not found
+
+components:
+  schemas:
+    CreateWidgetRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Sample Widget
+
+    Widget:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string

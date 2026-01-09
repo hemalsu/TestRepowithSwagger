@@ -1,29 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="NewFolder1\**" />
-    <Compile Remove="NewFolder\**" />
     <Content Remove="NewFolder1\**" />
-    <Content Remove="NewFolder\**" />
     <EmbeddedResource Remove="NewFolder1\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="NewFolder1\**" />
-    <None Remove="NewFolder\**" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Remove="Spec\openapi.v1.yaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<OpenApiReference Include="spec/openapi.v1.yaml" />-->
+    <OpenApiReference Include="Spec\openapi.v1.yaml" ClassName="widget" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Spec\" />
-  </ItemGroup>
-
 </Project>
