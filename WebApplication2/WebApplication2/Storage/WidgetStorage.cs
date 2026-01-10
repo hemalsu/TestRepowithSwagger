@@ -1,12 +1,13 @@
 ﻿using System;
+using WebApplication2.Interfaces;
 using WebApplication2.Model;
 
 namespace WebApplication2.Storage
 {
-    public static class WidgetStorage
+    public  class WidgetStorage : IWidgetStorage
     {
-        public static List<WidgetDTO> _widgets = new List<WidgetDTO>();
-        public static WidgetDTO Add(WidgetDTO widget)
+        public  List<WidgetDTO> _widgets = new List<WidgetDTO>();
+        public  WidgetDTO Add(WidgetDTO widget)
         {
             WidgetDTO newDTO = new WidgetDTO
             {
@@ -17,11 +18,11 @@ namespace WebApplication2.Storage
             return newDTO;
         }
 
-        public static List<WidgetDTO> GetAllWidgets()
+        public  List<WidgetDTO> GetAllWidgets()
         {
             return _widgets;
         }
-        public static WidgetDTO? getWidgetByID(Guid ID)
+        public  WidgetDTO? GetWidgetByID(Guid ID)
         {
            
             return _widgets.FirstOrDefault(w => w.Id == ID);

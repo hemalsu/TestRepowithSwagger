@@ -1,4 +1,9 @@
+using WebApplication2.Interfaces;
+using WebApplication2.Storage;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IWidgetStorage, WidgetStorage>();
 
 // Add services to the container.
 

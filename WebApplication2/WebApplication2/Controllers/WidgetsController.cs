@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.Model;
 using WebApplication2.Storage;
+using WebApplication2.Interfaces;
 
 namespace WebApplication2.Controllers
 {
@@ -9,13 +10,20 @@ namespace WebApplication2.Controllers
     [ApiController]
     public class WidgetsController : ControllerBase
     {
+        private readonly IWidgetStorage _storage; 
+        public WidgetsController(IWidgetStorage storage)
+        {
+            _storage = storage;
+        }
+
         [HttpPost]
         public IActionResult CreateWigdet(WidgetDTO widget)
         {
             try
             {
-                var created = WidgetStorage.Add(widget);
-                return CreatedAtAction("GetWidgetById", "Widgets", new { id = widget.Id }, created);
+                //var created = WidgetStorage.Add(widget);
+                var created = _storage.Add(widget);
+                return CreatedAtAction("GetWidgetByID", "Widgets", new { id = widget.Id }, created);
             }
             catch (Exception ex)
             {
@@ -28,7 +36,8 @@ namespace WebApplication2.Controllers
 
             try
             {
-                return Ok(WidgetStorage.GetAllWidgets());
+                return Ok(_storage.GetAllWidgets());
+               // return Ok(WidgetStorage.GetAllWidgets());
             }
             catch (Exception ex)
             {
@@ -40,7 +49,8 @@ namespace WebApplication2.Controllers
         {
             try
             {
-                var fondwidget = Storage.WidgetStorage.getWidgetByID(ID);
+                // var fondwidget = Storage.WidgetStorage.getWidgetByID(ID);
+                var fondwidget = _storage.GetWidgetByID(ID);
                 if (fondwidget == null)
                 {
                     return StatusCode(StatusCodes.Status404NotFound, "Widget not found");
